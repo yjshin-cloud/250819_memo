@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>dev.example</groupId>
+    <artifactId>memo-app</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--
+          MySQL Connector/J
+          - 자바 애플리케이션이 MySQL 데이터베이스와 JDBC를 통해 통신할 수 있도록 하는 드라이버입니다.
+          - DB 연결을 위해 반드시 필요합니다.
+        -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.4.0</version>
+        </dependency>
+
+        <!--
+          dotenv-java
+          - .env 파일을 통해 데이터베이스 접속 정보(DB URL, 계정, 비밀번호 등)를 안전하게 관리할 수 있습니다.
+          - 코드와 민감 정보를 분리하여 보안성을 높이고 설정 관리가 편리해집니다.
+        -->
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <!--
+          Jakarta Servlet API
+          - HttpServlet, Filter 등 서블릿 프로그래밍에 필요한 표준 API를 제공합니다.
+          - scope를 provided로 지정하여, 실행 시에는 Tomcat과 같은 WAS가 해당 라이브러리를 제공합니다.
+        -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+          Jakarta JSP API (선택 사항)
+          - JSP(PageContext, JspWriter 등)에 필요한 표준 API를 제공합니다.
+          - 실제 실행 시 Tomcat이 자체적으로 JSP 엔진을 포함하므로 없어도 동작은 가능하지만,
+            개발 환경(IDE)에서 JSP 관련 클래스 지원을 원활히 받기 위해 추가하는 것이 권장됩니다.
+        -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+              Maven WAR Plugin
+              - 프로젝트를 .war 파일로 패키징하여 Tomcat에 배포할 수 있도록 해줍니다.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
